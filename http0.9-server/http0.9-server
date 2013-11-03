@@ -1,4 +1,5 @@
 #! /usr/bin/env ruby
+
 # The stupidest possible web server you could conceive of. To start with we're
 # only going to support HTTP version 0.9
 
