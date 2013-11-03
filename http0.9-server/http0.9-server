@@ -15,7 +15,7 @@ class HTTP09Server
       request = connection.readline.chomp
 
       # Ignore the request if it isn't a proper HTTP 0.9 request
-      if match_data = request.match(%r{^GET /([a-zA-Z0-9?&]+)$})
+      if match_data = request.match(%r{^GET (/[a-zA-Z0-9?&\-]*).*$})
         path = match_data.captures.first
         connection.write "<h1>You asked for #{path}</h1>"
       end
