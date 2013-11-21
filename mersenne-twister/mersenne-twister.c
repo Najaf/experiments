@@ -92,7 +92,6 @@ void cloneRNG(RNG *rng1, RNG *rng2) {
     output[i] = extractNumber(rng1);
   }
   initRNGWithOutput(rng2, output);
-  rng2->index = rng1->index;
 }
 
 int main() {
