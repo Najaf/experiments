@@ -1,0 +1,10 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    bcrypt-ruby (3.1.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bcrypt-ruby
