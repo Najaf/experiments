@@ -1,0 +1,10 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    http-2 (0.6.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  http-2
