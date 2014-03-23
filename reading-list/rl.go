@@ -18,6 +18,10 @@ func NewBook(title, authors string) *Book {
   return &Book{title, authors}
 }
 
+func (b Book) String() string {
+  return "<Book[Title: " + b.Title + ", Authors: " + b.Authors + "]>"
+}
+
 func BookFromIsbn(isbn string) *Book {
   //fetch the books data from the google book API
   response, _ := http.Get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn)
@@ -52,5 +56,5 @@ func main() {
   }
 
   book := BookFromIsbn(*isbn)
-  fmt.Printf("%s by %s\n", book.Title, book.Authors)
+  fmt.Printf("%s\n", book)
 }
