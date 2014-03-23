@@ -22,11 +22,7 @@ func (b Book) String() string {
   return "<Book[Title: " + b.Title + ", Authors: " + b.Authors + "]>"
 }
 
-func BookFromIsbn(isbn string) *Book {
-  //fetch the books data from the google book API
-  response, _ := http.Get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn)
-  body, _ := ioutil.ReadAll(response.Body)
-
+func ParseResponse(body []byte) (string, string) {
   //parse the response into a Book
   var data interface{}
   json.Unmarshal(body, &data)
@@ -41,8 +37,14 @@ func BookFromIsbn(isbn string) *Book {
   for _, element := range authors {
     authorSlice = append(authorSlice, element.(string))
   }
+  return title, strings.Join(authorSlice, ", ")
+}
 
-  return NewBook(title, strings.Join(authorSlice, ", "))
+func BookFromIsbn(isbn string) *Book {
+  //fetch the books data from the google book API
+  response, _ := http.Get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn)
+  body, _ := ioutil.ReadAll(response.Body)
+  return NewBook(ParseResponse(body))
 }
 
 func main() {
